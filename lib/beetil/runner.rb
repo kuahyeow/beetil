@@ -23,7 +23,8 @@ module Beetil
     def extract_arguments!(args)
       options[:command] = args.shift
       option_parser.parse!(args)
-      error_out("Specify a command") if options[:command].nil?
+      print_out_command_list if options[:command].nil? || !Beetil::Commands::Command.available_commands.keys.include?(options[:command])
+
       error_out("Missing token") if options[:token].nil?
     end
 
@@ -44,6 +45,15 @@ module Beetil
     def error_out(message)
       puts message
       exit 1
+    end
+
+    private
+    def print_out_command_list
+      message = "Specify a command. Perhaps you meant: \n"
+      message << Beetil::Commands::Command.available_commands.map do |trigger, (klass, description)|
+        "  #{trigger} - #{description}"
+      end.join("\n")
+      error_out(message)
     end
   end
 end

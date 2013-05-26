@@ -9,8 +9,9 @@ module Beetil
       end
 
       def self.run!(command, args)
-        # FIXME explicit configuration, and some form of checking ?
-        Title.new(args).run! if command == "beetil"
+        raise "No commands configured!" unless respond_to?(:available_commands)
+        command_class = available_commands[command].first
+        command_class.new(args).run!
       end
 
       protected
