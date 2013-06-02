@@ -75,7 +75,7 @@ module Beetil
         result = perform_beetil_request(:get, "#{table_name}/#{id}", opts)
         raise NotFound.new(result.errors) if result.not_found? && raise_on_404
         raise ApiError.new(result.errors) if result.other_errors?
-        result.beetil_item(model_name) if result.has_result?(model_name)
+        new(result.beetil_item(model_name)) if result.has_result?(model_name)
       end
 
       def create(opts = {})

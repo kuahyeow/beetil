@@ -12,7 +12,7 @@ module Beetil
     end
 
     def get(*args)
-      @faraday.get(*args)
+      faraday.get(*args)
     end
 
     protected
