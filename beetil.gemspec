@@ -13,8 +13,8 @@ spec = Gem::Specification.new do |s|
   s.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
   s.require_paths = ["lib"]
 
-  s.authors = ["Luke Grimstrup"]
-  s.email = ["luke@beetil.com"]
+  s.authors = ["Luke Grimstrup", "Thong Kuah"]
+  s.email = ["luke@beetil.com", "kuahyeow@gmail.com"]
 
   s.add_dependency 'activesupport', '>= 3.2.0'
   s.add_dependency 'hashie',   '~> 2.0.5'
