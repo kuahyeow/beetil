@@ -18,7 +18,7 @@ spec = Gem::Specification.new do |s|
 
   s.add_dependency 'activesupport', '>= 3.2.0'
   s.add_dependency 'hashie',   '~> 1.1.0'
-  s.add_dependency 'faraday',  '~> 0.7.6'
+  s.add_dependency 'faraday',  '~> 0.8.7'
   s.add_dependency 'faraday_middleware'
 
   s.add_development_dependency 'rspec',   '~> 2.8.0'

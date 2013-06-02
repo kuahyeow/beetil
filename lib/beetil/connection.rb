@@ -17,11 +17,13 @@ module Beetil
 
     protected
     def create_faraday_connection(base_url)
-      Faraday.new(:url => base_url) do |faraday|
-        faraday.use Faraday::Request::JSON          # Beetil accepts json or xml, so request JSON
-        faraday.request  :url_encoded               # form-encode POST params, as required by Beetil
-        faraday.use FaradayMiddleware::ParseJson
-        faraday.adapter  Faraday.default_adapter    # make requests with Net::HTTP
+      Faraday.new(:url => base_url) do |conn|
+        conn.request :json                    # Beetil accepts json or xml, so request JSON
+        conn.request  :url_encoded            # form-encode POST params, as required by Beetil
+
+        conn.response :json                   # requires json gem install in 1.8.7
+
+        conn.adapter Faraday.default_adapter  # make http requests with Net::HTTP
       end
     end
   end
