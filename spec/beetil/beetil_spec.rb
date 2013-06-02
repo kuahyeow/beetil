@@ -1,6 +1,13 @@
 require 'spec_helper'
 
 describe "Beetil Gem" do
+  after do
+    Beetil.configure do |config|
+      config.base_url  = nil
+      config.api_token = nil
+    end
+  end
+
   it "should use the default base_url if none supplied" do
     Beetil.configure do |config|
       config.api_token = "some_token"

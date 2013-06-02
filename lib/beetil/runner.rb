@@ -16,6 +16,8 @@ module Beetil
       extract_arguments!(args)
       configure_beetil!
       Beetil::Commands::Command.run!(options[:command], args)
+    rescue Beetil::Commands::CommandError => e
+      error_out(e.message)
     end
 
     protected
@@ -75,7 +77,7 @@ module Beetil
     end
 
     def error_out(message)
-      puts message
+      puts "Error: #{message}"
       exit 1
     end
 

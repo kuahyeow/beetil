@@ -7,7 +7,7 @@ module Beetil
     module CommandList
       def available_commands
         {
-          "title" => [Title, "returns the title of the beetil"]
+          "title" => [Title, "returns the title of the beetil (change or incident)"]
         }
       end
     end

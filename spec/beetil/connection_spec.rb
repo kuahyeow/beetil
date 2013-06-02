@@ -5,8 +5,8 @@ describe Beetil::Connection do
     WebMock.disable_net_connect!
   end
   after do
-    WebMock.reset!
     WebMock.allow_net_connect!
+    WebMock.reset!
   end
 
   it 'should initialize with the base_url' do

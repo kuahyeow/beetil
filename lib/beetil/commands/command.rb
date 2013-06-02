@@ -1,8 +1,8 @@
 module Beetil
   module Commands
-    class Command
-      class CommandError < StandardError; end
+    class CommandError < StandardError; end
 
+    class Command
       attr_reader :args
       def initialize(args)
         @args = args
