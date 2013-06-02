@@ -15,9 +15,8 @@ module Beetil
       has_errors_hash?
     end
 
-    def beetil_item(beetil_type)
-      # FIXME
-      results.result.send(beetil_type)
+    def beetil_item(klass)
+      results.result.send(klass.model_name)
     end
 
     # According to API docs, there'll be an "errors" element containing individual "error" items
@@ -75,7 +74,7 @@ module Beetil
         result = perform_beetil_request(:get, "#{table_name}/#{id}", opts)
         raise NotFound.new(result.errors) if result.not_found? && raise_on_404
         raise ApiError.new(result.errors) if result.other_errors?
-        new(result.beetil_item(model_name)) if result.has_result?(model_name)
+        new(result.beetil_item(self)) if result.has_result?(model_name)
       end
 
       def create(opts = {})
