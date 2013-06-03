@@ -12,7 +12,7 @@ module Beetil
     end
 
     def has_errors?
-      has_errors_hash?
+      !errors.empty?
     end
 
     def beetil_item(klass)
@@ -21,21 +21,25 @@ module Beetil
 
     # According to API docs, there'll be an "errors" element containing individual "error" items
     def errors
-      results.errors.map(&:error)
+      errors_list.map(&:error)
     end
 
     # Work around very bad API design
     def not_found?
-      has_errors_hash? && !not_found_errors.empty?
+      has_errors? && !not_found_errors.empty?
     end
 
     def other_errors?
-      has_errors_hash? && not_found_errors.empty?
+      has_errors? && not_found_errors.empty?
     end
 
     protected
-    def has_errors_hash?
-      results.respond_to?(:errors)
+    def errors_list
+      if results.respond_to?(:errors)
+        results.errors
+      else
+        []
+      end
     end
 
     def not_found_errors
