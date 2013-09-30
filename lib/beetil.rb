@@ -2,6 +2,7 @@ require 'hashie'
 require 'active_support'
 require 'faraday'
 require 'faraday_middleware'
+require 'json'
 
 require 'beetil/configuration'
 require 'beetil/connection'

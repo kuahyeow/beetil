@@ -2,7 +2,7 @@
 $:.push File.expand_path("../lib", __FILE__)
 require "beetil/version"
 
-spec = Gem::Specification.new do |s|
+Gem::Specification.new do |s|
   s.name = 'beetil'
   s.version = Beetil::VERSION
   s.summary = "Beetil API Wrapper"
@@ -20,6 +20,7 @@ spec = Gem::Specification.new do |s|
   s.add_dependency 'hashie',   '~> 2.0.5'
   s.add_dependency 'faraday',  '~> 0.8.7'
   s.add_dependency 'faraday_middleware'
+  s.add_dependency 'json',     '~> 1.8.0'
 
   s.add_development_dependency 'rspec',   '~> 2.8.0'
   s.add_development_dependency "webmock", "~> 1.11"
